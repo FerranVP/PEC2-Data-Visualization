@@ -10,6 +10,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(ggplot2)
+library(reshape2)
 
+df <- melt(volcano)
 
+ggplot(df, aes(Var1, Var2, z= value)) +
+  stat_contour(geom="polygon",aes(fill=stat(level))) +
+  scale_fill_distiller(palette = "Spectral", direction = -1)
 ```
